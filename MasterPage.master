@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Content/bootstrap.css" type="text/css" rel ="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="col-md-12">
+<div style="width:auto;">
+        <div class="navbar-fixed-top">
+            <div class="col-md-12" style=" background-color:rgba(71, 152, 226, 1); text-align:center">
+                <div class="col-md-4" style="font-size:30px; margin-top:2%;margin-bottom:1%">Affitta Camere</div>
+                <div class="col-md-3" style="font-size:20px; margin-top:2%;margin-bottom:1%">
+                    <asp:Label ID="lblUser" runat="server" Text="Email"></asp:Label>
+                    &nbsp;
+                    <asp:TextBox ID="TxtEmail" runat="server" Width="133px"></asp:TextBox>
+                    <asp:Label ID="lblNome" runat="server"></asp:Label>
+                </div>
+                <div class="col-md-3" style="font-size:20px; margin-top:2%;margin-bottom:1%">
+                    <asp:Label ID="lblPass" runat="server" Text="Password"></asp:Label>
+                    &nbsp;
+                    <asp:TextBox ID="TxtPass" runat="server" Width="133px" TextMode="Password"></asp:TextBox>
+                &nbsp;
+                    <asp:Label ID="Label1" runat="server" Text="Errore" Visible="False"></asp:Label>
+                </div>
+                <div class="col-md-1" style="margin-top:2%;margin-bottom:1%">
+                    <asp:Button ID="btnLog" runat="server" Text="Login" OnClick="btnLog_Click" />
+                    <asp:Button ID="btnOut" runat="server" OnClick="Button4_Click" Text="Logout" Visible="False" />
+                </div>
+                <div class="col-md-1" style="margin-top:2%;margin-bottom:1%">
+                    <asp:Button ID="btnReg" runat="server" Text="Registrati" OnClick="btnReg_Click" />
+                </div>
+            </div>
+           <div class="col-md-4" style="margin-top:2%">
+            <div class="col-md-12">
+                Seleziona una destinazione tra quelle indicate!<br />
+                <asp:DropDownList ID="Destinazione" runat="server" OnSelectedIndexChanged="Destinazione_SelectedIndexChanged"></asp:DropDownList>
+            </div> 
+             <br />
+            <div class="col-md-12">
+                Seleziona la data di arrivo...<br />
+                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+                </div> 
+            <br />
+            <div class="col-md-12">
+                ...e quella di partenza!<br />
+                <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged"></asp:Calendar>
+                <br />
+                In quanti siete?&nbsp;
+                <asp:Button ID="Button3" runat="server" Height="20px" Text="+" OnClick="Button3_Click" />
+                &nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="TextBox3" runat="server" Width="21px" OnTextChanged="TextBox3_TextChanged" ReadOnly="True"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Button2" runat="server" Height="20px" Text="-" OnClick="Button2_Click" />
+                <br />
+                <br />
+                <asp:Button ID="Button1" runat="server" Text="Controlla i migliori hotel!" OnClick="Button1_Click" />
+            </div> 
+        </div>
+         <div class="col-md-8" style="margin-top:2%">
+            <asp:ContentPlaceHolder  id="ContentPlace1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        </div>
+    </div>
+        </div>
+    
+    </form>
+</body>
+</html>
