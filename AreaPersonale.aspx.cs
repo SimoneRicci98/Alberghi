@@ -21,7 +21,7 @@ public partial class AreaPersonale : System.Web.UI.Page
         help.assegnaComando("SELECT * " +
             "FROM Prenotazioni,Hotel "
             + "WHERE Cod_Utente = " + Session["Utente"].ToString()+
-            "AND ID_hotel = Cod_Albergo");
+            " AND ID_hotel = Cod_Albergo");
         rs = help.estraiDati();
         DataTable dt = new DataTable();
         dt.Columns.AddRange(new DataColumn[6]

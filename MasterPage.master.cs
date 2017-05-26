@@ -14,64 +14,47 @@ public partial class MasterPage : System.Web.UI.MasterPage
     string dataPartenza;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["info"] == null)
+        Destinazione.Items.Clear();
+        help.connetti();
+        help.assegnaComando("SELECT Zona From Hotel");
+        rs = help.estraiDati();
+        while (rs.Read())
         {
-            Destinazione.Items.Clear();
-            Destinazione.Items.Add(string.Empty);
-            help.connetti();
-            help.assegnaComando("SELECT Zona From Hotel");
-            rs = help.estraiDati();
-            while (rs.Read())
-            {
-                Destinazione.Items.Add(rs["Zona"].ToString());
-            }
-            help.disconnetti();
+            Destinazione.Items.Add(rs["Zona"].ToString());
+        }
+        help.disconnetti();
 
-            if (!IsPostBack)
-            {
-                ViewState["cont"] = 0;
-            }
-            if (Session["Utente"] != null)
-            {
-                help.connetti();
-                help.assegnaComando("SELECT Nome FROM Utenti WHERE ID_Utente=" + Session["Utente"].ToString());
-                rs = help.estraiDati();
-                rs.Read();
-                lblNome.Text = "Benvenuto " + rs["Nome"].ToString();
-                lblPass.Visible = false;
-                lblUser.Visible = false;
-                TxtEmail.Visible = false;
-                TxtPass.Visible = false;
-                btnLog.Visible = false;
-                btnReg.Visible = false;
-                btnOut.Visible = true;
-            }
-            else
-            {
-                lblPass.Visible = true;
-                lblUser.Visible = true;
-                TxtEmail.Visible = true;
-                TxtPass.Visible = true;
-                btnLog.Visible = true;
-                btnReg.Visible = true;
-                btnOut.Visible = false;
-            }
+        if (!IsPostBack)
+        {
+            ViewState["cont"] = 0;
+        }
+        if (Session["Utente"] != null)
+        {
+            help.connetti();
+            help.assegnaComando("SELECT Nome FROM Utenti WHERE ID_Utente=" + Session["Utente"].ToString());
+            rs = help.estraiDati();
+            rs.Read();
+            lblNome.Text = "Benvenuto " + rs["Nome"].ToString();
+            lblPass.Visible = false;
+            lblUser.Visible = false;
+            TxtEmail.Visible = false;
+            TxtPass.Visible = false;
+            btnLog.Visible = false;
+            btnReg.Visible = false;
+            btnOut.Visible = true;
         }
         else
         {
-            Destinazione.Items.Clear();
-            help.connetti();
-            help.assegnaComando("SELECT Zona From Hotel");
-            rs = help.estraiDati();
-            while (rs.Read())
-            {
-                Destinazione.Items.Add(rs["Zona"].ToString());
-            }
-            help.disconnetti();
-            
+            lblPass.Visible = true;
+            lblUser.Visible = true;
+            TxtEmail.Visible = true;
+            TxtPass.Visible = true;
+            btnLog.Visible = true;
+            btnReg.Visible = true;
+            btnOut.Visible = false;
         }
-        
     }
+     
 
     protected void Destinazione_SelectedIndexChanged(object sender, EventArgs e)
     {

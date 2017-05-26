@@ -14,16 +14,7 @@ public partial class VisualizzaHotel : System.Web.UI.Page
         OleDbDataReader rs;
     
     protected void Page_Load(object sender, EventArgs e)
-    {/*
-        string[] info = (string[])Session["info"];
-        help.connetti();
-        help.assegnaComando("SELECT * FROM Hotel WHERE Zona = '"+info[0]+"'");
-        rs = help.estraiDati();
-        
-        //metodo semplice e brutto
-        GridView1.DataSource = rs;
-        GridView1.DataBind();
-        help.disconnetti();*/
+    {
         tabella();
 
     }

@@ -8,14 +8,14 @@
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:ImageField DataImageUrlField="img" HeaderText="Immagine" ItemStyle-Width="40px" ControlStyle-Width="100" ControlStyle-Height="100">
-<ControlStyle Height="100px" Width="100px"></ControlStyle>
+            <ControlStyle Height="100px" Width="100px"></ControlStyle>
+            <ItemStyle Width="40px"></ItemStyle>
 
-<ItemStyle Width="40px"></ItemStyle>
                 </asp:ImageField>
                 <asp:BoundField DataField="nome" HeaderText="Nome dell'hotel" />
                 <asp:BoundField DataField="zona" HeaderText="Zona" />
                 <asp:BoundField DataField="ind" HeaderText="Indirizzo" />
-                <asp:ButtonField HeaderText="Per saperne di più" Text="Pulsante" />
+                <asp:ButtonField HeaderText="Per saperne di più" Text="Clicca qui" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
