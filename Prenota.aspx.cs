@@ -37,7 +37,14 @@ public partial class Prenota : System.Web.UI.Page
         help.disconnetti();
 
         help.connetti();                                     
-        help.assegnaComando("INSERT INTO Prenotazioni VALUES("+app+",'" + prezzo + "','" + messaggio + "','" + info[1] + "','" + info[2] + "'," + info[3] + "," + Session["Utente"].ToString() + ","+info[1]+")");
+        help.assegnaComando("INSERT INTO Prenotazioni VALUES("+app+",'" + 
+            prezzo + "','" + 
+            messaggio + "','" + 
+            info[1] + "','" + 
+            info[2] + "'," + 
+            info[3] + "," + 
+            Session["Utente"].ToString() + "," +
+            Session["Stanza"].ToString()+")");
         help.eseguicomando();
         help.disconnetti();
         Response.Redirect("Operazionecompletata.aspx");

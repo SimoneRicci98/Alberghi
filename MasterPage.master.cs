@@ -81,14 +81,24 @@ public partial class MasterPage : System.Web.UI.MasterPage
         { 
             dataArrivo = Calendar1.SelectedDate.ToString();
             dataPartenza = Calendar2.SelectedDate.ToString();
-            string destinazione = Destinazione.SelectedValue;
-            string[] info = new string[4];
-            info[0] = destinazione;
-            info[1] = dataArrivo.Substring(0,10);
-            info[2] = dataPartenza.Substring(0,10);
-            info[3] = TextBox3.Text;
-            Session["info"] = info;
-            Response.Redirect("VisualizzaHotel.aspx");
+            if (DateTime.Parse(dataArrivo) < DateTime.Today
+                || DateTime.Parse(dataPartenza) < DateTime.Today
+                || DateTime.Parse(dataPartenza) < DateTime.Parse(dataArrivo))
+            {
+                MessageBox.Show("Impossibile selezionare queste date");
+            }
+            else
+            {
+                string destinazione = Destinazione.SelectedValue;
+                string[] info = new string[4];
+                info[0] = destinazione;
+                info[1] = dataArrivo.Substring(0,10);
+                info[2] = dataPartenza.Substring(0,10);
+                info[3] = TextBox3.Text;
+                Session["info"] = info;
+                Response.Redirect("VisualizzaHotel.aspx");
+            }
+
             
         }
         catch

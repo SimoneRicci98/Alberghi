@@ -20,6 +20,7 @@
         <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="95%" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="g1_RowCommand">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
+                <asp:BoundField DataField="ID_stanza" HeaderText="ID_stanza" />
                 <asp:BoundField DataField="Cat" HeaderText="Categoria" />
                 <asp:BoundField DataField="Nome" HeaderText="Nome" />
                 <asp:BoundField DataField="Vista" HeaderText="Vista" />

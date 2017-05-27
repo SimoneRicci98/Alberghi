@@ -28,10 +28,35 @@ public partial class Dettagli : System.Web.UI.Page
 
     protected void g1_RowCommand(Object sender, GridViewCommandEventArgs e)
     {
-        int id = Convert.ToInt32(e.CommandArgument);
-        GridViewRow row = GridView1.Rows[id];
-        Session["Prezzo"] = row.Cells[4].Text;
-        Response.Redirect("Prenota.aspx");
+        if (Session["Utente"] == null)
+        {
+            MessageBox.Show("Prima di prenotare è necessario eseguire il login");
+        }
+        else
+        {
+            string[] info = (string[])Session["info"];
+            int id = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = GridView1.Rows[id];
+            help.connetti();
+            help.assegnaComando("SELECT ID_Prenotazione FROM Prenotazioni WHERE Arrivo >= '" + info[1] + "' AND Partenza <= '" + info[2] + "' AND Cod_Stanza = " + row.Cells[0].Text);
+            rs = help.estraiDati();
+            rs.Read();
+            if (rs == null)
+            {
+                MessageBox.Show("La stanza è già stata prenotata in quelle date");
+                help.disconnetti();
+            }
+            else
+            {
+                help.disconnetti();
+                Session["Stanza"] = row.Cells[0].Text;
+                Session["Prezzo"] = row.Cells[5].Text;
+                Response.Redirect("Prenota.aspx");
+            }
+        }
+
+
+
     }
     public void tabella()
     {
@@ -41,8 +66,9 @@ public partial class Dettagli : System.Web.UI.Page
             + "WHERE Cod_hotel = " + Session["Hotel"].ToString());
         rs = help.estraiDati();
         DataTable dt = new DataTable();
-        dt.Columns.AddRange(new DataColumn[6]
-           {new DataColumn("Cat"),
+        dt.Columns.AddRange(new DataColumn[7]
+           {new DataColumn("ID_stanza"),
+            new DataColumn("Cat"),
             new DataColumn("Nome"),
             new DataColumn("Vista"),
             new DataColumn("Nletti"),
@@ -50,7 +76,7 @@ public partial class Dettagli : System.Web.UI.Page
             new DataColumn("Prenota")});
         while (rs.Read())
         {
-            dt.Rows.Add(rs["Categoria"], rs["Nome"], rs["Vista"], rs["NumLetti"], rs["PrezzoPerNotte"],"clicca per prenotare");
+            dt.Rows.Add(rs["ID_Stanza"], rs["Categoria"], rs["Nome"], rs["Vista"], rs["NumLetti"], rs["PrezzoPerNotte"],"clicca per prenotare");
         }
         GridView1.DataSource = dt;
         GridView1.DataBind();
