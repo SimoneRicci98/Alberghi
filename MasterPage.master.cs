@@ -42,9 +42,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
             btnLog.Visible = false;
             btnReg.Visible = false;
             btnOut.Visible = true;
+            btnAreaPers.Visible = true;
         }
         else
         {
+            btnAreaPers.Visible = false;
             lblPass.Visible = true;
             lblUser.Visible = true;
             TxtEmail.Visible = true;
@@ -152,5 +154,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Session["Utente"] = null;
         Response.Redirect("Default.aspx");
+    }
+    protected void btnAreaPers_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AreaPersonale.aspx");
     }
 }

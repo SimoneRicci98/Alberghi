@@ -32,10 +32,12 @@
                 </div>
                 <div class="col-md-1" style="margin-top:2%;margin-bottom:1%">
                     <asp:Button ID="btnLog" runat="server" Text="Login" OnClick="btnLog_Click" />
-                    <asp:Button ID="btnOut" runat="server" OnClick="Button4_Click" Text="Logout" Visible="False" />
+                    <asp:Button ID="btnOut" runat="server" OnClick="Button4_Click" Text="Logout" Visible="False" />&nbsp
+                    
                 </div>
                 <div class="col-md-1" style="margin-top:2%;margin-bottom:1%">
                     <asp:Button ID="btnReg" runat="server" Text="Registrati" OnClick="btnReg_Click" />
+                    <asp:Button ID="btnAreaPers" runat="server" OnClick="btnAreaPers_Click" Text="AreaPersonale" />
                 </div>
             </div>
            <div class="col-md-4" style="margin-top:2%">
